@@ -11,7 +11,31 @@
             <input type="text" name="search" id="" placeholder="city">
             <button type="submit">search</button>
         </form>
-        
+        <aside>
+            <button data-unit="fahrenheit" >f</button>
+            <button data-unit="celsius" >c</button>
+        </aside>
+        <div class="data">
+            <header></header>
+            <section class="days-container">
+                <table>
+                    <thead>
+                        <th id="day" scope="col" >day</th>
+                        <th id="min-temp" scope="col" >min temp</th>
+                        <th id="max-temp" scope="col" >max temp</th>
+                        <th id="chance-of-rain" scope="col" >chance of rain</th>
+                    </thead>
+                    <tbody>
+                        <!-- <tr>
+                            <td headers="day" data-item="" ></td>
+                            <td headers="min-temp" data-item="" ></td>
+                            <td headers="max-temp" data-item="" ></td>
+                            <td headers="chance-of-rain" data-item="" ></td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </section>
+        </div>
     </div>
 </body>
 </html>

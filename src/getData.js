@@ -11,8 +11,13 @@ async function getWeather(city) {
         return error.message;
     }
 }
+function toFahrenheit(celsius){
+    let fahrenheit = Math.round((celsius * 1.8 +32)*100)/100 ;
 
+    return fahrenheit;
+}
 
 export {
-    getWeather
+    getWeather,
+    toFahrenheit
 }
