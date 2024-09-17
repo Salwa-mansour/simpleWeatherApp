@@ -1,18 +1,23 @@
 import './style.css';
-import { getWeather,toFahrenheit } from './getData';
+import { getWeather,farhenheitData } from './getData';
 
 
 
 const weatherForm = document.querySelector('#weather-form');
 const unitBtnContainer = document.querySelector('aside');
 const daysDataTable = document.querySelector('.days-container tbody')
+const defaultCity ='sanaa';
 
-let city = 'sanaa';
-async function weatherData(city){
+async function weatherData(city,isInFahrenheit=false){
     try {
         const weather = await getWeather(city);
       //   console.table(weather.days)
-        displayWeather(weather,daysDataTable)
+            if(!isInFahrenheit){
+                displayWeather(weather,daysDataTable)
+            }else{
+                displayWeather(farhenheitData(),daysDataTable)
+            }
+        
     } catch (error) {
         console.log(error)
     }
@@ -20,8 +25,8 @@ async function weatherData(city){
 
 }
 function displayWeather(data,detailsContainer,headerContainer=""){
-
-    console.log(data.currentConditions)
+    console.log(data.days[0])
+   // console.log(data.currentConditions)
     const daysContent = data.days.map((day)=>{
         return `
           <tr>
@@ -45,9 +50,18 @@ weatherForm.addEventListener('submit',(e)=>{
 })
 
 unitBtnContainer.addEventListener('click',(e)=>{
+    const city = weatherForm.querySelector('[name="search"]').value || defaultCity;
     if(e.target.dataset.unit==="fahrenheit"){
-        console.log('fahrenheit')
+        //farhenheitData()
+       
+        weatherData(city,true)
     }else{
-        console.log('cleciuas')
+        weatherData(city)//this well cuase reapeted request 
     }
 })
+document.addEventListener("DOMContentLoaded", (e) => {
+   
+    e.preventDefault();
+  weatherData(defaultCity);
+
+});
